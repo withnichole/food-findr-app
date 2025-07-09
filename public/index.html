@@ -105,100 +105,7 @@
     </div>
 
     <script>
-        // --- Hardcoded Restaurant Data (with Google Maps URLs) ---
-        const restaurants = [
-            { name: "Mama's on the Half Shell", city: "Baltimore", cuisine: ["Seafood", "American"], price: "$$", neighborhood: "Fells Point", googleMapsUrl: "https://www.google.com/maps?q=Mama's+on+the+Half+Shell+Baltimore" },
-            { name: "Mayuree Thai Tavern ", city: "Baltimore", cuisine: ["Thai"], price: "$$", neighborhood: "Mount Vernon", googleMapsUrl: "https://www.google.com/maps?q=Mayuree+Thai+Tavern+Baltimore" },
-            { name: "The Tilted Row", city: "Baltimore", cuisine: ["New American"], price: "$$", neighborhood: "Mount Vernon", googleMapsUrl: "https://www.google.com/maps?q=The+Tilted+Row+Baltimore" },
-            { name: "Akbar Restaurant", city: "Baltimore", cuisine: ["Indian"], price: "$", neighborhood: "Mt Vernon", googleMapsUrl: "https://www.google.com/maps?q=Akbar+Restaurant+Baltimore" },
-            { name: "Akira Ramen & Izakaya", city: "Baltimore", cuisine: ["Japanese", "Ramen"], price: "$", neighborhood: "Brewers Hill", googleMapsUrl: "https://www.google.com/maps?q=Akira+Ramen+%26+Izakaya+Baltimore" },
-            { name: "Alma Cocina Latina", city: "Baltimore", cuisine: ["Venezuelan", "Latin"], price: "$$", neighborhood: "Station North", googleMapsUrl: "https://www.google.com/maps?q=Alma+Cocina+Latina+Baltimore" },
-            { name: "Ammoora", city: "Baltimore", cuisine: ["Syrian", "Latin", "Fine Dining"], price: "$$", neighborhood: "Inner Harbor", googleMapsUrl: "https://www.google.com/maps?q=Ammoora+Baltimore" },
-            { name: "Ash Bar", city: "Baltimore", cuisine: ["French", "Cocktail Bars"], price: "$", neighborhood: "Mt Vernon", googleMapsUrl: "https://www.google.com/maps?q=Ash+Bar+Baltimore" },
-            { name: "Azumi", city: "Baltimore", cuisine: ["Japanese"], price: "$$$", neighborhood: "Harbor East", googleMapsUrl: "https://www.google.com/maps?q=Azumi+Baltimore" },
-            { name: "Blue Agave Mexican Food", city: "Baltimore", cuisine: ["Mexican", "Tequila"], price: "$", neighborhood: "Federal Hill", googleMapsUrl: "https://www.google.com/maps?q=Blue+Agave+Mexican+Food+Baltimore" },
-            { name: "Bodhi Corner", city: "Baltimore", cuisine: ["Thai"], price: "$", neighborhood: "Hampden", googleMapsUrl: "https://www.google.com/maps?q=Bodhi+Corner+Baltimore" },
-            { name: "Bodhi Federal Hill", city: "Baltimore", cuisine: ["Thai"], price: "$", neighborhood: "Federal Hill", googleMapsUrl: "https://www.google.com/maps?q=Bodhi+Federal+Hill+Baltimore" },
-            { name: "Bunny's Buckets & Bubbles", city: "Baltimore", cuisine: ["New American", "Fried Chicken", "Comfort Food"], price: "$$", neighborhood: "Fells Point", googleMapsUrl: "https://www.google.com/maps?q=Bunny's+Buckets+%26+Bubbles+Baltimore" },
-            { name: "Byblos Lebanese Cuisine", city: "Baltimore", cuisine: ["Lebanese", "Mediterranean"], price: "$", neighborhood: "Federal Hill", googleMapsUrl: "https://www.google.com/maps?q=Byblos+Lebanese+Cuisine+Baltimore" },
-            { name: "Caribbean Dynasty Restaurant & Lounge", city: "Baltimore", cuisine: ["Caribbean"], price: "$", neighborhood: "Ridgely's Delight", googleMapsUrl: "https://www.google.com/maps?q=Caribbean+Dynasty+Restaurant+%26+Lounge+Baltimore" },
-            { name: "Cazbar", city: "Baltimore", cuisine: ["Mediterranean", "Turkish"], price: "$$", neighborhood: "Downtown", googleMapsUrl: "https://www.google.com/maps?q=Cazbar+Baltimore" },
-            { name: "Cece's Roland Park", city: "Baltimore", cuisine: ["Mediterranean", "Coastal", "European"], price: "$$$", neighborhood: "Cross Keys", googleMapsUrl: "https://www.google.com/maps?q=Cece's+Roland+Park+Baltimore" },
-            { name: "Charleston", city: "Baltimore", cuisine: ["New American", "Fine Dining"], price: "$$$", neighborhood: "Harbor East", googleMapsUrl: "https://www.google.com/maps?q=Charleston+Restaurant+Baltimore" },
-            { name: "Chiapparelli's Restaurant", city: "Baltimore", cuisine: ["Italian", "Seafood"], price: "$$$", neighborhood: "Little Italy", googleMapsUrl: "https://www.google.com/maps?q=Chiapparelli's+Restaurant+Baltimore" },
-            { name: "Cinghiale", city: "Baltimore", cuisine: ["Italian"], price: "$$", neighborhood: "Harbor East", googleMapsUrl: "https://www.google.com/maps?q=Cinghiale+Baltimore" },
-            { name: "Clavel", city: "Baltimore", cuisine: ["Mexican"], price: "$$", neighborhood: "Remington", googleMapsUrl: "https://www.google.com/maps?q=Clavel+Baltimore" },
-            { name: "Cookhouse", city: "Baltimore", cuisine: ["New American", "Cocktail Bar"], price: "$$", neighborhood: "Bolton Hill", googleMapsUrl: "https://www.google.com/maps?q=Cookhouse+Baltimore" },
-            { name: "Cypriana - Homewood", city: "Baltimore", cuisine: ["Cypriot", "Mediterranean"], price: "$$", neighborhood: "Tuscany-Canterbury", googleMapsUrl: "https://www.google.com/maps?q=Cypriana+-+Homewood+Baltimore" },
-            { name: "Estiatorio Plaka", city: "Baltimore", cuisine: ["Greek"], price: "$$", neighborhood: "Greektown", googleMapsUrl: "https://www.google.com/maps?q=Estiatorio+Plaka+Baltimore" },
-            { name: "Facci Baltimore", city: "Baltimore", cuisine: ["Italian"], price: "$$$", neighborhood: "Otterbein", googleMapsUrl: "https://www.google.com/maps?q=Facci+Baltimore" },
-            { name: "Fogo de Chão Brazilian Steakhouse", city: "Baltimore", cuisine: ["Brazilian"], price: "$$$", neighborhood: "Inner Harbor", googleMapsUrl: "https://www.google.com/maps?q=Fogo+de+Chao+Brazilian+Steakhouse+Baltimore" },
-            { name: "foraged. a hyper-seasonal eatery", city: "Baltimore", cuisine: ["New American", "Sustainable Farming"], price: "$$$", neighborhood: "Station North", googleMapsUrl: "https://www.google.com/maps?q=foraged.+a+hyper-seasonal+eatery+Baltimore" },
-            { name: "Gertrude's", city: "Baltimore", cuisine: ["New American"], price: "$$", neighborhood: "John Hopkins Homewood", googleMapsUrl: "https://www.google.com/maps?q=Gertrude's+Baltimore" },
-            { name: "Gunther & Co.", city: "Baltimore", cuisine: ["New American"], price: "$$$", neighborhood: "Brewers Hill", googleMapsUrl: "https://www.google.com/maps?q=Gunther+%26+Co.+Baltimore" },
-            { name: "Hersh's", city: "Baltimore", cuisine: ["Italian"], price: "$$", neighborhood: "Riverside", googleMapsUrl: "https://www.google.com/maps?q=Hersh's+Baltimore" },
-            { name: "IMOJANG Korean Restaurant", city: "Baltimore", cuisine: ["Korean"], price: "$", neighborhood: "Charles North", googleMapsUrl: "https://www.google.com/maps?q=IMOJANG+Korean+Restaurant+Baltimore" },
-            { name: "Indigma - a Modern Indian Bistro", city: "Baltimore", cuisine: ["Indian"], price: "$$$", neighborhood: "Mid-Town Belvedere", googleMapsUrl: "https://www.google.com/maps?q=Indigma+-+a+Modern+Indian+Bistro+Baltimore" },
-            { name: "Indochine Vietnamese Restaurant", city: "Baltimore", cuisine: ["Vietnamese"], price: "$$", neighborhood: "Mid-Town Belvedere", googleMapsUrl: "https://www.google.com/maps?q=Indochine+Vietnamese+Restaurant+Baltimore" },
-            { name: "Jerk at Nite Baltimore", city: "Baltimore", cuisine: ["Jamaican"], price: "$$$", neighborhood: "Bromo Arts District", googleMapsUrl: "https://www.google.com/maps?q=Jerk+at+Nite+Baltimore" },
-            { name: "Jong Kak", city: "Baltimore", cuisine: ["Korean", "Korean BBQ"], price: "$$", neighborhood: "Charles North", googleMapsUrl: "https://www.google.com/maps?q=Jong+Kak+Baltimore" },
-            { name: "Judy's Island Grill - Canton", city: "Baltimore", cuisine: ["Caribbean"], price: "$", neighborhood: "Canton", googleMapsUrl: "https://www.google.com/maps?q=Judy's+Island+Grill+-+Canton+Baltimore" },
-            { name: "Kong (Pocha)", city: "Baltimore", cuisine: ["Korean"], price: "$$", neighborhood: "Charles North", googleMapsUrl: "https://www.google.com/maps?q=Kong+(Pocha)+Baltimore" },
-            { name: "Kumari Restaurant & Bar - Mount Vernon", city: "Baltimore", cuisine: ["Indian"], price: "$", neighborhood: "Mount Vernon", googleMapsUrl: "https://www.google.com/maps?q=Kumari+Restaurant+%26+Bar+-+Mount+Vernon+Baltimore" },
-            { name: "L.P. Steamers", city: "Baltimore", cuisine: ["New American", "Seafood"], price: "$$", neighborhood: "Locust Point", googleMapsUrl: "https://www.google.com/maps?q=L.P.+Steamers+Baltimore" },
-            { name: "La Barrita", city: "Baltimore", cuisine: ["Argentinean"], price: "$$$$", neighborhood: "Butchers Hill", googleMapsUrl: "https://www.google.com/maps?q=La+Barrita+Baltimore" },
-            { name: "La Cuchara", city: "Baltimore", cuisine: ["Basque", "Spanish", "French"], price: "$$$", neighborhood: "Jones Falls Area", googleMapsUrl: "https://www.google.com/maps?q=La+Cuchara+Baltimore" },
-            { name: "La Scala", city: "Baltimore", cuisine: ["Italian", "Wine Bar"], price: "$$$", neighborhood: "Little Italy", googleMapsUrl: "https://www.google.com/maps?q=La+Scala+Baltimore" },
-            { name: "Lao Sze Chuan", city: "Baltimore", cuisine: ["Chinese", "Szechuan"], price: "$", neighborhood: "Charles Village", googleMapsUrl: "https://www.google.com/maps?q=Lao+Sze+Chuan+Baltimore" },
-            { name: "Le Comptoir Du Vin", city: "Baltimore", cuisine: ["French", "Wine Bar", "Comfort Food"], price: "$$$", neighborhood: "Station North", googleMapsUrl: "https://www.google.com/maps?q=Le+Comptoir+Du+Vin+Baltimore" },
-            { name: "Lebanese Taverna", city: "Baltimore", cuisine: ["Lebanese"], price: "$", neighborhood: "Harbor East", googleMapsUrl: "https://www.google.com/maps?q=Lebanese+Taverna+Baltimore" },
-            { name: "Little Havana",  city: "Baltimore", cuisine: ["Cuban"], price: "$", neighborhood: "Riverside", googleMapsUrl: "https://www.google.com/maps?q=Little+Havana+Baltimore" },
-            { name: "Magdalena, A Maryland Bistro", city: "Baltimore", cuisine: ["French", "New American", "Bistro"], price: "$$$", neighborhood: "Mid-Town Belvedere", googleMapsUrl: "https://www.google.com/maps?q=Magdalena,+A+Maryland+Bistro+Baltimore" },
-            { name: "Marie Louise Bistro", city: "Baltimore", cuisine: ["French"], price: "$$", neighborhood: "Mount Vernon", googleMapsUrl: "https://www.google.com/maps?q=Marie+Louise+Bistro+Baltimore" },
-            { name: "Marta Fine Food and Spirits", city: "Baltimore", cuisine: ["Italian", "New American", "Fine Dining"], price: "$$$", neighborhood: "Upper Fells Point", googleMapsUrl: "https://www.google.com/maps?q=Marta+Fine+Food+and+Spirits+Baltimore" },
-            { name: "Matsuri Restaurant", city: "Baltimore", cuisine: ["Japanese"], price: "$$", neighborhood: "Federal Hill", googleMapsUrl: "https://www.google.com/maps?q=Matsuri+Restaurant+Baltimore" },
-            { name: "Maximón", city: "Baltimore", cuisine: ["Mexican"], price: "$$$", neighborhood: "Harbor East", googleMapsUrl: "https://www.google.com/maps?q=Maximón+Baltimore" },
-            { name: "Mayuree Thai Tavern ", city: "Baltimore", cuisine: ["Thai"], price: "$$", neighborhood: "Canton", googleMapsUrl: "https://www.google.com/maps?q=Mayuree+Thai+Tavern+Baltimore" },
-            { name: "Mekong Delta Cafe", city: "Baltimore", cuisine: ["Vietnamese"], price: "$", neighborhood: "Downtown", googleMapsUrl: "https://www.google.com/maps?q=Mekong+Delta+Cafe+Baltimore" },
-            { name: "Monarque", city: "Baltimore", cuisine: ["French"], price: "$$$$", neighborhood: "Harbor East", googleMapsUrl: "https://www.google.com/maps?q=Monarque+Baltimore" },
-            { name: "Morton's The Steakhouse", city: "Baltimore", cuisine: ["New American", "Steakhouse", "Seafood"], price: "$$$$", neighborhood: "Downtown", googleMapsUrl: "https://www.google.com/maps?q=Morton's+The+Steakhouse+Baltimore" },
-            { name: "Mount Everest Restaurant - Hampden", city: "Baltimore", cuisine: ["Napalese", "Indian"], price: "$$", neighborhood: "Hampden", googleMapsUrl: "https://www.google.com/maps?q=Mount+Everest+Restaurant+-+Hampden+Baltimore" },
-            { name: "Mount Everest Restaurant - Inner Harbor", city: "Baltimore", cuisine: ["Napalese", "Indian"], price: "$$", neighborhood: "Inner Harbor", googleMapsUrl: "https://www.google.com/maps?q=Mount+Everest+Restaurant+-+Inner+Harbor+Baltimore" },
-            { name: "Nanami Cafe", city: "Baltimore", cuisine: ["Japanese", "Asian"], price: "$$", neighborhood: "Fells Point", googleMapsUrl: "https://www.google.com/maps?q=Nanami+Cafe+Baltimore" },
-            { name: "Nihao", city: "Baltimore", cuisine: ["Asian", "Chinese"], price: "$$", neighborhood: "Canton", googleMapsUrl: "https://www.google.com/maps?q=Nihao+Baltimore" },
-            { name: "Ouzo Bay", city: "Baltimore", cuisine: ["Mediterranean", "Greek", "Seafood"], price: "$$$", neighborhood: "Harbor East", googleMapsUrl: "https://www.google.com/maps?q=Ouzo+Bay+Baltimore" },
-            { name: "Papi Cuisine", city: "Baltimore", cuisine: ["Caribbean", "Seafood", "Afro-Latin Fusion", "Latin"], price: "$$$", neighborhood: "South Baltimore", googleMapsUrl: "https://www.google.com/maps?q=Papi+Cuisine+Baltimore" },
-            { name: "Papi's Tacos", city: "Baltimore", cuisine: ["Mexican"], price: "$$", neighborhood: "Fells Point", googleMapsUrl: "https://www.google.com/maps?q=Papi's+Tacos+Baltimore" },
-            { name: "Peter Chang Baltimore", city: "Baltimore", cuisine: ["Chinese", "Asian"], price: "$", neighborhood: "Middle East", googleMapsUrl: "https://www.google.com/maps?q=Peter+Chang+Baltimore" },
-            { name: "Peter’s Inn", city: "Baltimore", cuisine: ["New American"], price: "$$$", neighborhood: "Fells Point", googleMapsUrl: "https://www.google.com/maps?q=Peter’s+Inn+Baltimore" },
-            { name: "Petit Louis Bistro", city: "Baltimore", cuisine: ["French", "Bistro"], price: "$$$", neighborhood: "Roland Park", googleMapsUrl: "https://www.google.com/maps?q=Petit+Louis+Bistro+Baltimore" },
-            { name: "Pho Bac", city: "Baltimore", cuisine: ["Vietnamese", "Asian"], price: "$", neighborhood: "Canton", googleMapsUrl: "https://www.google.com/maps?q=Pho+Bac+Baltimore" },
-            { name: "Picante Tacos Restaurant", city: "Baltimore", cuisine: ["Mexican"], price: "$", neighborhood: "Little Italy", googleMapsUrl: "https://www.google.com/maps?q=Picante+Tacos+Restaurant+Baltimore" },
-            { name: "Puerto 511", city: "Baltimore", cuisine: ["Spanish", "Peruvian"], price: "$$$", neighborhood: "Downtown", googleMapsUrl: "https://www.google.com/maps?q=Puerto+511+Baltimore" },
-            { name: "Rec Pier Chop House", city: "Baltimore", cuisine: ["Steakhouse", "Italian"], price: "$$$$", neighborhood: "Fells Point", googleMapsUrl: "https://www.google.com/maps?q=Rec+Pier+Chop+House+Baltimore" },
-            { name: "Refocused Vegan", city: "Baltimore", cuisine: ["Vegan"], price: "$$", neighborhood: "Bromo Arts District", googleMapsUrl: "https://www.google.com/maps?q=Refocused+Vegan+Baltimore" },
-            { name: "Restaurante Tio Pepe", city: "Baltimore", cuisine: ["Spanish", "Mediterranean"], price: "$$$", neighborhood: "Mount Vernon", googleMapsUrl: "https://www.google.com/maps?q=Restaurante+Tio+Pepe+Baltimore" },
-            { name: "Sabatino's", city: "Baltimore", cuisine: ["Italian", "Seafood"], price: "$", neighborhood: "Little Italy", googleMapsUrl: "https://www.google.com/maps?q=Sabatino's+Baltimore" },{ name: "Shoyou Sushi", city: "Baltimore", cuisine: ["Japanese", "Sushi", "Asian"], price: "$$", neighborhood: "Riverside", googleMapsUrl: "https://www.google.com/maps?q=Shoyou+Sushi+Baltimore" },
-            { name: "Sotto Sopra", city: "Baltimore", cuisine: ["Italian", "Farm to Table"], price: "$$$", neighborhood: "Downtown", googleMapsUrl: "https://www.google.com/maps?q=Sotto+Sopra+Baltimore" },
-            { name: "Tambers Restaurant", city: "Baltimore", cuisine: ["Indian", "New American"], price: "$", neighborhood: "Charles Village", googleMapsUrl: "https://www.google.com/maps?q=Tambers+Restaurant+Baltimore" },
-            { name: "Tapas Teatro", city: "Baltimore", cuisine: ["Spanish", "Tapas", "Cafe"], price: "$$", neighborhood: "Downtown", googleMapsUrl: "https://www.google.com/maps?q=Tapas+Teatro+Baltimore" },
-            { name: "Thai Street", city: "Baltimore", cuisine: ["Thai", "Noodles", "Asian"], price: "$", neighborhood: "Fells Point", googleMapsUrl: "https://www.google.com/maps?q=Thai+Street+Baltimore" },
-            { name: "The Black Olive", city: "Baltimore", cuisine: ["Greek", "Mediterranean", "Seafood"], price: "$$$", neighborhood: "Fells Point", googleMapsUrl: "https://www.google.com/maps?q=The+Black+Olive+Baltimore" },
-            { name: "The Capital Grille", city: "Baltimore", cuisine: ["New American", "Steakhouse", "Fine Dining"], price: "$$$$", neighborhood: "Inner Harbor", googleMapsUrl: "https://www.google.com/maps?q=The+Capital+Grille+Baltimore" },
-            { name: "The Choptank", city: "Baltimore", cuisine: ["Seafood", "New American", "Maryland Cuisine"], price: "$$$", neighborhood: "Fells Point", googleMapsUrl: "https://www.google.com/maps?q=The+Choptank+Baltimore" },
-            { name: "The Duchess", city: "Baltimore", cuisine: ["Fusion", "Guam", "Philipine", "Japanese", "Hawaiian", "Pan Pacific"], price: "$$$", neighborhood: "Hampden", googleMapsUrl: "https://www.google.com/maps?q=The+Duchess+Baltimore" },
-            { name: "The Helmand", city: "Baltimore", cuisine: ["Afghan"], price: "$$", neighborhood: "Mount Vernon", googleMapsUrl: "https://www.google.com/maps?q=The+Helmand+Baltimore" },
-            { name: "The Royal Blue", city: "Baltimore", cuisine: ["New American"], price: "$", neighborhood: "Station North", googleMapsUrl: "https://www.google.com/maps?q=The+Royal+Blue+Baltimore" },
-            { name: "The Ruxton Steakhouse", city: "Baltimore", cuisine: ["New American", "Steakhouse"], price: "$$$$", neighborhood: "Harbor East", googleMapsUrl: "https://www.google.com/maps?q=The+Ruxton+Steakhouse+Baltimore" },
-            { name: "Toki Underground", city: "Baltimore", cuisine: ["Japanese", "Ramen"], price: "$$", neighborhood: "Better Waverly", googleMapsUrl: "https://www.google.com/maps?q=Toki+Underground+Baltimore" },
-            { name: "True Chesapeake", city: "Baltimore", cuisine: ["Oysters", "Seafood", "New American", "Fine Dining"], price: "$$", neighborhood: "Jones Falls Road", googleMapsUrl: "https://www.google.com/maps?q=True+Chesapeake+Baltimore" },
-            { name: "Verde", city: "Baltimore", cuisine: ["Italian", "Pizza"], price: "$", neighborhood: "Canton", googleMapsUrl: "https://www.google.com/maps?q=Verde+Baltimore" },
-            { name: "Woodberry Tavern", city: "Baltimore", cuisine: ["New American", "Farm to Table"], price: "$$$", neighborhood: "Woodberry", googleMapsUrl: "https://www.google.com/maps?q=Woodberry+Tavern+Baltimore" },
-            { name: "Yama Sushi Bar", city: "Baltimore", cuisine: ["Japanese", "Asian"], price: "$", neighborhood: "Hoes Heights", googleMapsUrl: "https://www.google.com/maps?q=Yama+Sushi+Bar+Baltimore" },
-            { name: "YARD", city: "Baltimore", cuisine: ["Caribbean"], price: "$", neighborhood: "Federal Hill", googleMapsUrl: "https://www.google.com/maps?q=YARD+Baltimore" },
-            { name: "ZAATAR Mediterranean Cuisine", city: "Baltimore", cuisine: ["Mediterranean"], price: "$", neighborhood: "Federal Hill", googleMapsUrl: "https://www.google.com/maps?q=ZAATAR+Mediterranean+Cuisine+Baltimore" },
-        ];
-// --- DOM Elements ---
+        // --- DOM Elements ---
         const form = document.getElementById('prefs-form');
         const searchInput = document.getElementById('search');
         const priceSelect = document.getElementById('price');
@@ -206,62 +113,61 @@
         const resultDiv = document.getElementById('result');
 
         // --- Event Listener ---
-        generateBtn.addEventListener('click', () => {
+        generateBtn.addEventListener('click', async () => { // Make function async
             // Get user preferences
-            const searchTerm = searchInput.value.trim().toLowerCase();
+            const searchTerm = searchInput.value.trim(); // No need to toLowerCase here, backend handles it
             const price = priceSelect.value;
-
 
             // Validate search input
             if (!searchTerm) {
-                displayResult("<p class='text-red-600 font-medium'>Please enter a city, cuisine, or neighborhood.</p>", true);
-                resultDiv.style.opacity = 1; // Make sure error message is visible
-                return; // Stop processing if search is empty
+                displayResult("<p class='text-red-600 font-medium'>Please enter a neighborhood or cuisine.</p>", true);
+                return;
             }
 
-
-            // Filter restaurants
-            const matchingRestaurants = restaurants.filter(restaurant => {
-                // 1. Check Search Term (city, cuisine, or neighborhood)
-                const searchMatch =
-                    restaurant.city.toLowerCase().includes(searchTerm) ||
-                    restaurant.cuisine.some(c => c.toLowerCase().includes(searchTerm)) ||
-                    restaurant.neighborhood.toLowerCase().includes(searchTerm);
-
-                // 2. Check Price (if selected)
-                const priceMatch = !price || restaurant.price === price; // True if 'Any' price or matches
-
-
-
-                return searchMatch && priceMatch;
-            });
-
-            // Display result
             resultDiv.style.opacity = 0; // Fade out old result
-            setTimeout(() => { // Wait for fade out before changing content
-                 if (matchingRestaurants.length > 0) {
-                    // Pick a random restaurant from the matches
-                    const randomIndex = Math.floor(Math.random() * matchingRestaurants.length);
-                    const chosenRestaurant = matchingRestaurants[randomIndex];
-                    // Construct the result HTML including the map link
-                    displayResult(`
-                        <div id="result-card">
-                           <h3 class="text-xl font-semibold text-gray-900">${chosenRestaurant.name}</h3>
-                           <p class="text-gray-600">Cuisine: ${chosenRestaurant.cuisine.join(', ')}</p>
-                           <p class="text-gray-600">Price: ${chosenRestaurant.price}</p>
-                           <p class="text-gray-600">Neighborhood: ${chosenRestaurant.neighborhood}</p>
-                           <p class="text-sm text-gray-500 mt-2">(${chosenRestaurant.city})</p>
-                           <a href="${chosenRestaurant.googleMapsUrl}" target="_blank" rel="noopener noreferrer" class="map-link">
-                               <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/map-pin.svg" alt="Map Pin">
-                               View on Google Maps
-                           </a>
-                        </div>
-                    `);
-                } else {
-                    displayResult("<p class='text-red-600 font-medium'>😭 No restaurants found matching your criteria. Try broadening your search!</p>", true);
+
+            try {
+                // Construct query parameters
+                const queryParams = new URLSearchParams({ search: searchTerm });
+                if (price) {
+                    queryParams.append('price', price);
                 }
-                 resultDiv.style.opacity = 1; // Fade in new result
-            }, 300); // Match timeout roughly to CSS transition duration
+
+                // Fetch data from your backend API
+                // IMPORTANT: Replace YOUR_RENDER_BACKEND_URL with your actual URL from Render (e.g., https://food-findr-backend.onrender.com)
+                const backendUrl = "https://food-findr-backend.onrender.com"; // Your actual Render URL
+                const response = await fetch(`${backendUrl}/api/recommendation?${queryParams.toString()}`);
+                const data = await response.json(); // Parse the JSON response
+
+                setTimeout(() => {
+                    if (response.ok) { // Check if the response status is 200-299
+                        const chosenRestaurant = data; // Data is already the chosen restaurant object
+                        displayResult(`
+                            <div id="result-card">
+                               <h3 class="text-xl font-semibold text-gray-900">${chosenRestaurant.name}</h3>
+                               <p class="text-gray-600">Cuisine: ${chosenRestaurant.cuisine.join(', ')}</p>
+                               <p class="text-gray-600">Price: ${chosenRestaurant.price}</p>
+                               <p class="text-gray-600">Neighborhood: ${chosenRestaurant.neighborhood}</p>
+                               <p class="text-sm text-gray-500 mt-2">(${chosenRestaurant.city})</p>
+                               <a href="${chosenRestaurant.googleMapsUrl}" target="_blank" rel="noopener noreferrer" class="map-link">
+                                   <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/map-pin.svg" alt="Map Pin">
+                                   View on Google Maps
+                               </a>
+                            </div>
+                        `);
+                    } else {
+                        // Handle errors from the backend (e.g., 404 No restaurants found)
+                        displayResult(`<p class='text-red-600 font-medium'>${data.message || 'An unexpected error occurred.'}</p>`, true);
+                    }
+                    resultDiv.style.opacity = 1; // Fade in new result
+                }, 300);
+            } catch (error) {
+                console.error('Fetch error:', error);
+                setTimeout(() => {
+                    displayResult("<p class='text-red-600 font-medium'>Oops! Something went wrong. Please try again later.</p>", true);
+                    resultDiv.style.opacity = 1;
+                }, 300);
+            }
         });
 
         // --- Helper function to display results ---
